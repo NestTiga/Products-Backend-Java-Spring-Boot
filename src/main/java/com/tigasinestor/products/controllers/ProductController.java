@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController("product_controller_v1")
 @RequestMapping("/api/v1/product")
 public class ProductController {
@@ -27,6 +28,11 @@ public class ProductController {
     @GetMapping("/findAllDesired")
     public ResponseEntity<List<Product>> getAllProductsDesired() {
         return ResponseEntity.status(HttpStatus.OK).body(productService.getAllProductsDesired());
+    }
+
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Product> getProduct(@PathVariable Long id) throws PresentException {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getById(id));
     }
 
     @PutMapping("/desiredProduct/{id}")

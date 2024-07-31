@@ -11,6 +11,8 @@ public interface ProductService {
 
     List<Product> getAllProductsDesired();
 
+    Product getById(Long id) throws PresentException;
+
     Product changeDesiredProduct(Product product, Long id) throws PresentException;
 
     boolean deleteProductById(Product product, Long id) throws PresentException;

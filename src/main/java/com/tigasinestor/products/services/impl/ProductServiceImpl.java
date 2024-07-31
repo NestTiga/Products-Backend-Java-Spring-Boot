@@ -30,6 +30,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product getById(Long id) throws PresentException {
+        Optional<Product> findProduct = productRepository.findById(id);
+        if (findProduct.isPresent()) {
+            return findProduct.get();
+        } else {
+            throw new PresentException(GlobalMessages.PRODUCT_ID_NOT_FOUND.concat(String.valueOf(id)), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @Override
     public Product changeDesiredProduct(Product product, Long id) throws PresentException {
         Optional<Product> findProduct = productRepository.findById(id);
 
