@@ -30,6 +30,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public int getProductAvergaePrice() {
+        return productRepository.promedioPrecioQuery();
+    }
+
+    @Override
     public Product getById(Long id) throws PresentException {
         Optional<Product> findProduct = productRepository.findById(id);
         if (findProduct.isPresent()) {

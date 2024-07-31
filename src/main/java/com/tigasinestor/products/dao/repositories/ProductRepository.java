@@ -16,4 +16,7 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Query("SELECT p FROM Product p WHERE p.active = true AND p.desired = true")
     List<Product> findByStateActiveAndDesired(); // query personalizada para buscar productos activos y deseados
+
+    @Query("SELECT AVG(p.price) FROM Product p WHERE p.active = true")
+    int promedioPrecioQuery(); // query personalizada para obtener el promedio de los precios de los productos
 }

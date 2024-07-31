@@ -35,6 +35,12 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productService.getById(id));
     }
 
+    @GetMapping("/getAverangePrice")
+    public ResponseEntity<Integer> getAverangePrice() {
+        return ResponseEntity.status(HttpStatus.OK).body(productService.getProductAvergaePrice());
+    }
+
+
     @PutMapping("/desiredProduct/{id}")
     public ResponseEntity<Product> changeDesiredProduct(@Valid @RequestBody Product product, @PathVariable Long id) throws PresentException {
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.changeDesiredProduct(product, id));

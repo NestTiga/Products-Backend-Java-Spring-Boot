@@ -11,6 +11,8 @@ public interface ProductService {
 
     List<Product> getAllProductsDesired();
 
+    int getProductAvergaePrice();
+
     Product getById(Long id) throws PresentException;
 
     Product changeDesiredProduct(Product product, Long id) throws PresentException;
