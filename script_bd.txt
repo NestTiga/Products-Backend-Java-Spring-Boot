@@ -1,0 +1,45 @@
+--Crear base de datos:
+
+CREATE DATABASE db_products_dev
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Spanish_Ecuador.1252'
+    LC_CTYPE = 'Spanish_Ecuador.1252'
+    LOCALE_PROVIDER = 'libc'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+--Crear la tabla products:
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    product_id bigint NOT NULL,
+    active boolean NOT NULL,
+    code character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    description character varying(250) COLLATE pg_catalog."default" NOT NULL,
+    desired boolean NOT NULL,
+    name character varying(50) COLLATE pg_catalog."default" NOT NULL,
+    price numeric(7,2) NOT NULL,
+    CONSTRAINT products_pkey PRIMARY KEY (product_id),
+    CONSTRAINT code_unique UNIQUE (code)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.products
+    OWNER to postgres;
+
+-- Insertar datos de prueba
+
+INSERT INTO products (product_id, code, name, description, price, active, desired) VALUES
+(1, 'PROD001', 'Product One', 'This is the first product description.', 49.99, true, false),
+(2, 'PROD002', 'Product Two', 'This is the second product description.', 79.99, true, true),
+(3, 'PROD003', 'Product Three', 'This is the third product description.', 99.99, false, false),
+(4, 'PROD004', 'Product Four', 'This is the fourth product description.', 29.99, true, false),
+(5, 'PROD005', 'Product Five', 'This is the fifth product description.', 59.99, true, true);
+
+
+
+Nota: Se maneja secuencias en PostgreSQL
